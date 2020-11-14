@@ -8,7 +8,7 @@ yTrain = []
 xTest = []
 y = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 desvio_padrao = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-d = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+dis = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
 cap_shape = {"b":0, "c": 1, "x":2, "f":3, "k":4, "s":5}
 cap_surface = {"f": 0, "g":1, "y":2, "s":3}
@@ -33,96 +33,115 @@ spore_print_color = {"k":0, "n":1, "b":2, "h":3, "r":4, "o":5, "u":6, "w":7, "y"
 population = {"a":0, "c":1, "n":2, "s":3, "v":4, "y":5}
 habitat = {"g":0, "l":1, "m":2, "p":3, "u":4, "w":5, "d":6}
 
-def replace (x[y]): 
+def replace (x,y): 
     for i in cap_shape:
-        if i in x[y][0]:
+        if i==x[y][0]:
             x[y][0] = cap_shape.get(i,-1)
     for i in cap_surface:
-        if i in x[y][1]:
+        if i==x[y][1]:
             x[y][1] = cap_surface.get(i,-1)
     for i in cap_color:
-        if i in x[y][2]:
+        if i==x[y][2]:
             x[y][2] = cap_color.get(i,-1)
     for i in bruises:
-        if i in x[y][3]:
+        if i==x[y][3]:
             x[y][3] = bruises.get(i,-1)
     for i in odor:
-        if i in x[y][4]:
+        if i==x[y][4]:
             x[y][4] = odor.get(i,-1)
     for i in gill_attachment:
-        if i in x[y][5]:
+        if i==x[y][5]:
             x[y][5] = gill_attachment.get(i,-1)
     for i in gill_spacing:
-        if i in x[y][6]:
+        if i==x[y][6]:
             x[y][6] = gill_spacing.get(i,-1)
     for i in gill_size:
-        if i in x[y][7]:
+        if i==x[y][7]:
             x[y][7] = gill_size.get(i,-1)
     for i in gill_color:
-        if i in x[y][8]:
+        if i==x[y][8]:
             x[y][8] = gill_color.get(i,-1)
     for i in stalk_shape:
-        if i in x[y][9]:
+        if i==x[y][9]:
             x[y][9] = stalk_shape.get(i,-1)
     for i in stalk_root:
-        if i in x[y][10]:
+        if i==x[y][10]:
             x[y][10] = stalk_root.get(i,-1)
     for i in stalk_surface_above_ring:
-        if i in x[y][11]:
+        if i==x[y][11]:
             x[y][11] = stalk_surface_above_ring.get(i,-1)
     for i in stalk_surface_below_ring:
-        if i in x[y][12]:
+        if i==x[y][12]:
             x[y][12] = stalk_surface_below_ring.get(i,-1)
     for i in stalk_color_above_ring:
-        if i in x[y][13]:
+        if i==x[y][13]:
             x[y][13] = stalk_color_above_ring.get(i,-1)
     for i in stalk_color_below_ring:
-        if i in x[y][14]:
+        if i==x[y][14]:
             x[y][14] = stalk_color_below_ring.get(i,-1)
     for i in veil_typee:
-        if i in x[y][15]:
+        if i==x[y][15]:
             x[y][15] = veil_typee.get(i,-1)
     for i in veil_color:
-        if i in x[y][16]:
+        if i==x[y][16]:
             x[y][16] = veil_color.get(i,-1)
     for i in ring_number:
-        if i in x[y][17]:
+        if i==x[y][17]:
             x[y][17] = ring_number.get(i,-1)
     for i in ring_typee:
-        if i in x[y][18]:
+        if i==x[y][18]:
             x[y][18] = ring_typee.get(i,-1)
     for i in spore_print_color:
-        if i in x[y][19]:
+        if i==x[y][19]:
             x[y][19] = spore_print_color.get(i,-1)
     for i in population:
-        if i in x[y][20]:
+        if i==x[y][20]:
             x[y][20] = population.get(i,-1)
     for i in habitat:
-        if i in x[y][21]:
+        if i==x[y][21]:
             x[y][21] = habitat.get(i,-1)
 
-def insertReplace (int(n), x[i])
-    for i in range (int(n)):
+def insertReplace (n, x):
+    for y in range (int(n)):
         x.append(input().split(" "))
-        replace(x[i])
+        replace(x,y)
 
 def mediaDesvio ():
     for i in range (int(nTrain)):
-        for j in range (22)
+        for j in range (22):
             y[i] += xTrain[i][j]
 
     for i in range (int(nTrain)):
-        for j in range (22)
+        for j in range (22):
             desvio_padrao[i] += (xTrain[i][j]-y[i])**2
         desvio_padrao[i] = math.sqrt(desvio_padrao[i]/nTrain)
+
+insertReplace(nTrain,xTrain)
 
 for i in range (int(nTrain)):
     yTrain.append(input())
 
-insertReplace(int(nTrain),xTrain)
 insertReplace(int(nTest),xTest)
 
 for i in range (len(xTest)):
+    distancia = 0
+    qtdP = 0
+    qtdE = 0
+
     for j in range (22):
-        d[i] += xTest[i][j]-xTrain[i])**2
-    d[i] = math.sqrt(d[i])
+        distancia += (xTest[i][j]-xTrain[i][j])**2
+    
+    dis[i] = [math.sqrt(dis[i]), yTrain[i]]
+
+    dis.sort() #Não tá funcionando esse sort, e sem ele o código não calcula certo
+
+    for i in range (int(k)):
+        if dis[i]=="p":
+            qtdP+=1
+        else:
+            qtdE+=1
+    
+    if qtdE>qtdP:
+        print("e")
+    else:
+        print("p") 
