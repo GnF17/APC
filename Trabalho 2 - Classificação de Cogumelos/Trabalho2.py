@@ -6,9 +6,9 @@ nTrain, nTest = input().split(" ")
 xTrain = []
 yTrain = []
 xTest = []
-y = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-desvio_padrao = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-dis = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+y = []
+desvio_padrao = []
+
 
 cap_shape = {"b":0, "c": 1, "x":2, "f":3, "k":4, "s":5}
 cap_surface = {"f": 0, "g":1, "y":2, "s":3}
@@ -106,37 +106,62 @@ def insertReplace (n, x):
         x.append(input().split(" "))
         replace(x,y)
 
-def mediaDesvio ():
-    for i in range (int(nTrain)):
-        for j in range (22):
-            y[i] += xTrain[i][j]
-
-    for i in range (int(nTrain)):
-        for j in range (22):
-            desvio_padrao[i] += (xTrain[i][j]-y[i])**2
-        desvio_padrao[i] = math.sqrt(desvio_padrao[i]/nTrain)
-
 insertReplace(nTrain,xTrain)
+
+for i in range (int(nTrain)):
+    media = 0
+    for j in range (22):
+        media += xTrain[i][j]
+    y.append(media/22)
+
+for i in range (int(nTrain)):
+    dp = 0
+    for j in range (22):
+        dp += (xTrain[i][j]-y[i])**2
+    desvio_padrao.append(math.sqrt(dp/int(nTrain)))
+
+for i in range (int(nTrain)):
+    if desvio_padrao[i]==0:
+        for j in range(22):
+            xTrain[i][j] = 0
+    else:
+        for j in range(22):
+            xTrain[i][j] = (xTrain[i][j]-y[i])/desvio_padrao[i]
 
 for i in range (int(nTrain)):
     yTrain.append(input())
 
 insertReplace(int(nTest),xTest)
 
-for i in range (len(xTest)):
-    distancia = 0
+for i in range (int(nTest)):
+    if desvio_padrao[i]==0:
+        for j in range(22):
+            xTest[i][j] = 0
+    else:
+        for j in range(22):
+            xTest[i][j] = (xTest[i][j]-y[i])/desvio_padrao[i]
+
+def returnDis(x):
+    return x["distancia"]
+
+for z in range (len(xTest)):
+    dis = []
     qtdP = 0
     qtdE = 0
 
-    for j in range (22):
-        distancia += (xTest[i][j]-xTrain[i][j])**2
-    
-    dis[i] = [math.sqrt(dis[i]), yTrain[i]]
+    for i in range (int(nTrain)):
+        distancia = int(0) 
 
-    dis.sort() #Não tá funcionando esse sort, e sem ele o código não calcula certo
+        for j in range (22):
+            distancia += (xTrain[i][j]-xTest[z][j])**2
+            
+        dis.append({"distancia": math.sqrt(distancia), "rotulo": yTrain[i]})
+
+    dis.sort(key=returnDis) 
+    print(dis)
 
     for i in range (int(k)):
-        if dis[i]=="p":
+        if dis[i]["rotulo"]=="p":
             qtdP+=1
         else:
             qtdE+=1
