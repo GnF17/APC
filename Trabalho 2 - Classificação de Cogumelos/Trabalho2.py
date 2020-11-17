@@ -168,4 +168,4 @@ for z in xTest:
     if qtdE>qtdP:
         print("e")
     else:
-        print("p") 
+        print("p")  
