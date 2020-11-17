@@ -108,43 +108,43 @@ def insertReplace (n, x):
 
 insertReplace(nTrain,xTrain)
 
-for i in range (int(nTrain)):
+for i in range (22):
     media = 0
-    for j in range (22):
-        media += xTrain[i][j]
-    y.append(media/22)
+    for j in xTrain:
+        media += j[i]
+    y.append(media/int(nTrain))
 
-for i in range (int(nTrain)):
+for i in range (22):
     dp = 0
-    for j in range (22):
-        dp += (xTrain[i][j]-y[i])**2
+    for j in xTrain:
+        dp += (j[i]-y[i])**2
     desvio_padrao.append(math.sqrt(dp/int(nTrain)))
 
-for i in range (int(nTrain)):
+for i in range (22):
     if desvio_padrao[i]==0:
-        for j in range(22):
-            xTrain[i][j] = 0
+        for j in xTrain:
+            j[i] = 0
     else:
-        for j in range(22):
-            xTrain[i][j] = (xTrain[i][j]-y[i])/desvio_padrao[i]
+        for j in xTrain:
+            j[i] = (j[i]-y[i])/desvio_padrao[i]
 
 for i in range (int(nTrain)):
     yTrain.append(input())
 
 insertReplace(int(nTest),xTest)
 
-for i in range (int(nTest)):
+for i in range (22):
     if desvio_padrao[i]==0:
-        for j in range(22):
-            xTest[i][j] = 0
+        for j in xTest:
+            j[i] = 0
     else:
-        for j in range(22):
-            xTest[i][j] = (xTest[i][j]-y[i])/desvio_padrao[i]
+        for j in xTest:
+            j[i] = (j[i]-y[i])/desvio_padrao[i]
 
 def returnDis(x):
     return x["distancia"]
 
-for z in range (len(xTest)):
+for z in xTest:
     dis = []
     qtdP = 0
     qtdE = 0
@@ -153,19 +153,18 @@ for z in range (len(xTest)):
         distancia = int(0) 
 
         for j in range (22):
-            distancia += (xTrain[i][j]-xTest[z][j])**2
+            distancia += (xTrain[i][j]-z[j])**2
             
         dis.append({"distancia": math.sqrt(distancia), "rotulo": yTrain[i]})
 
-    dis.sort(key=returnDis) 
-    print(dis)
-
+    dis.sort(key=returnDis)
+    
     for i in range (int(k)):
         if dis[i]["rotulo"]=="p":
             qtdP+=1
         else:
             qtdE+=1
-    
+
     if qtdE>qtdP:
         print("e")
     else:
