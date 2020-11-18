@@ -53,3 +53,14 @@ Nota: para um par de vetores:**a** e **b**, ambos contendo **D** elementos, a di
 
    2. Verifique, entre os **K** vizinhos mais próximos de :warning: , se a maioria deles (no conjunto de treinamento) é de cogumelos venenosos ('p') ou comestíveis ('e').
    3. Imprima o rótulo da classe majoritária obtida no passo anterior ('p' ou 'e'). 
+   
+**Testes**
+
+Faça download do arquivo (big_in.txt e big_out.txt) no mesmo diretório onde fica seu programa. Para testar seu programa num terminal Linux (assumindo que seu programa se chama solution.py), sugerimos os seguintes comandos:
+
+  python solution.py < big_in.txt > big_res.txt
+  diff big_res.txt big_out.txt
+
+Seja paciente. Para o arquivo big_in.txt, é esperado que uma solução desse problema demore mais de um minuto de processamento. Porém, se seu programa demorar muito mais que isso (por exemplo, 5 minutos), é melhor investigar e tentar melhorar a eficiência dele.O segundo comando compara seu resultado (big_res.txt) com o gabarito. Se houver alguma diferença, ele vai listar as linhas onde erros ocorrem. Caso contrário, ele não imprime nada na tela, o que indica que seu código passou no teste
+
+(O arquivo big_res.txt é o meu resultado).
