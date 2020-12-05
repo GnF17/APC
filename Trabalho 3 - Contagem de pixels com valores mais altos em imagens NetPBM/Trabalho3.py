@@ -34,10 +34,9 @@ else:
     while i<(len(arquivo)-2):
         i+=1
         if arquivo[i][0]!="#" and aux<=2:
-            #print(i)
             aux+=1
             if aux==3:
-                max_value = int(int(arquivo[i])/2)
+                max_value = int(arquivo[i])/2
         elif arquivo[i][0]=="#":
             continue
         else:
@@ -47,10 +46,9 @@ else:
             if arq[0]=="#":
                 continue
             elif len(arq)<3:
-                if int((int(arquivo[i])+int(arquivo[i+1])+int(arquivo[i+2]))/3)>max_value:
+                if (int(arquivo[i])+int(arquivo[i+1])+int(arquivo[i+2]))/3>max_value:
                     x+=1
                 i+=2
-                #print("esse ",i)
             elif int((int(arq[0])+int(arq[1])+int(arq[2]))/3)>max_value and len(arq)>=3:
                 x+=1
 print(x)
